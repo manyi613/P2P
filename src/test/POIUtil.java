@@ -26,6 +26,8 @@ public class POIUtil {
     private final static String xlsx = "xlsx";  
 	private static String fileBase = "D:\\工作文档\\P2O\\数据\\测试数据\\练习";
 	private static String filenameflst = "/法律实体.xlsx";
+	
+	private static int firstRowNum = -1;
     /** 
      * 读入excel文件，解析后返回 
      * @param file 
@@ -49,27 +51,42 @@ public class POIUtil {
                 }  
                 //获得当前sheet的开始行  
                 int firstRowNum  = sheet.getFirstRowNum(); 
-                System.out.println("firstRowNum ="+firstRowNum);
+//                System.out.println("firstRowNum ="+firstRowNum);
                 //获得当前sheet的结束行  
                 int lastRowNum = sheet.getLastRowNum();
-                System.out.println("lastRowNum ="+lastRowNum);
+//                System.out.println("lastRowNum ="+lastRowNum);
                 //循环除了第一行的所有行  
 //                for(int rowNum = firstRowNum+1;rowNum <= lastRowNum;rowNum++){  
                 for(int rowNum = firstRowNum;rowNum <= lastRowNum -1;rowNum++){  
                     //获得当前行  
-                    Row row = sheet.getRow(rowNum);  
+                    Row row = sheet.getRow(rowNum);
+                    
+                    
+//                    Boolean d = isRowEmpty(row);
+//                    System.out.println("you kong hang !!!!!!!!!!!!!");
                     if(row == null){  
                         continue;  
                     }  
+                    if(rowNum == 0) {
+                    	firstRowNum = row.getPhysicalNumberOfCells();
+                    }
                     //获得当前行的开始列  
-                    int firstCellNum = row.getFirstCellNum();  
+//                    int firstCellNum = row.getFirstCellNum();
+                    int firstCellNum = 0;
                     //获得当前行的列数  
-                    int lastCellNum = row.getPhysicalNumberOfCells();  
-                    String[] cells = new String[row.getPhysicalNumberOfCells()];  
+//                    int lastCellNum = row.getPhysicalNumberOfCells(); 
+                    
+                    
+                    //获取不为空的列个数
+                    int lastCellNum = firstRowNum;
+                    //获取最后一个不为空的列是第几个
+//                    String[] cells = new String[row.getPhysicalNumberOfCells()];
+                    String[] cells = new String[firstRowNum];
                     //循环当前行  
+                    
                     for(int cellNum = firstCellNum; cellNum < lastCellNum;cellNum++){  
-                        Cell cell = row.getCell(cellNum);  
-                        cells[cellNum] = getCellValue(cell);  
+                    	Cell cell = row.getCell(cellNum); 
+                    	cells[cellNum] = getCellValue(cell); 
                     }  
                     list.add(cells);  
                 }  
@@ -149,4 +166,16 @@ public class POIUtil {
         }  
         return cellValue;  
     }  
+    
+    
+    public static boolean isRowEmpty(Row row) {
+
+    	   for (int c = row.getFirstCellNum(); c < row.getLastCellNum(); c++) {
+    	       Cell cell = row.getCell(c);
+    	       if (cell != null && cell.getCellType() != Cell.CELL_TYPE_BLANK)
+    	           return false;
+    	   }
+    	   return true;
+    	}
+    
 }
