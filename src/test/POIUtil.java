@@ -17,8 +17,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 //import org.springframework.web.multipart.MultipartFile;  
 /** 
  * excel读写工具类 
- * @author sun.kai 
- * 2016年8月21日 
+ * @author  manyi
+ * 2017年6月21日 
  */  
 public class POIUtil {  
 //    private static Logger logger  = Logger.getLogger(POIUtil.class);  

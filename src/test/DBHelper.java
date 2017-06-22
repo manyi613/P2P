@@ -6,10 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;  
   
 public class DBHelper {  
-    public static final String url = "jdbc:mysql://rm-2ze86ne9n05vf0uw3o.mysql.rds.aliyuncs.com:3306/p2p_test";  
-    public static final String name = "com.mysql.jdbc.Driver";  
-    public static final String user = "zcb_p2p_test_sql";  
-    public static final String password = "Zhichubao!@#$%^&*(0";  
+    public static final String url = "";  
+    public static final String name = "";  
+    public static final String user = "";  
+    public static final String password = "";  
   
     public Connection conn = null;  
     public PreparedStatement pst = null;  

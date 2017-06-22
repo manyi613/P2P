@@ -28,9 +28,9 @@ public class test {
         data  = POIUtil.readExcel(file);
 //        System.out.println(data.size());
         getLegalEntityData(data);
-        verifyListRep("编码",LegalEntity);
-        verifyListRep("法律实体名称",LegalEntity);
-//        printList(LegalEntity);
+        verifyFieldDup("编码",LegalEntity);
+        verifyFieldDup("法律实体名称",LegalEntity);
+        printList(LegalEntity);
 //        System.out.println(data.size());
 //        for(int i = 0 ; i< data.size(); i++) {
 //        	String[] tmp = data.get(i);
@@ -68,7 +68,7 @@ public class test {
 				System.out.println(it1.next());
 			}
 	}
-	public static void verifyListRep(String str,List<Map> source) {
+	public static void verifyFieldDup(String str,List<Map> source) {
 		String value = "";
 		
 		for(int i = 0;i < source.size(); i ++){
